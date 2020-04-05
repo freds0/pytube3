@@ -147,7 +147,6 @@ class YouTube:
         del self.player_config_args["player_response"]
         self.stream_monostate.title = self.title
         self.stream_monostate.duration = self.length
-        self.stream_monostate.category = self.category
 
         logger.info("init finished successfully")
 
