@@ -147,6 +147,7 @@ class YouTube:
         del self.player_config_args["player_response"]
         self.stream_monostate.title = self.title
         self.stream_monostate.duration = self.length
+        self.stream_monostate.category = self.category
 
         logger.info("init finished successfully")
 
@@ -312,12 +313,25 @@ class YouTube:
         """
         return self.player_response.get("videoDetails", {}).get("author", "unknown")
 
+    @property
+    def category(self) -> str:
+        """Get the category of the video.
+
+        :rtype: str
+
+        """
+        return (
+            self.player_response.get("microformat", {})
+            .get("playerMicroformatRenderer", {})
+            .get("category", {})
+        )
+
     def register_on_progress_callback(self, func: OnProgress):
         """Register a download progress callback function post initialization.
 
         :param callable func:
             A callback function that takes ``stream``, ``chunk``,
-             and ``bytes_remaining`` as parameters.
+            ``file_handle``, ``bytes_remaining`` as parameters.
 
         :rtype: None
 
@@ -328,7 +342,7 @@ class YouTube:
         """Register a download complete callback function post initialization.
 
         :param callable func:
-            A callback function that takes ``stream`` and  ``file_path``.
+            A callback function that takes ``stream`` and  ``file_handle``.
 
         :rtype: None
 
