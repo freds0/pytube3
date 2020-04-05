@@ -12,7 +12,7 @@ class OnProgress(Protocol):
             An instance of :class:`Stream <Stream>` being downloaded.
         :type stream:
             :py:class:`pytube.Stream`
-        :param bytes chunk:
+        :param str chunk:
             Segment of media file binary data, not yet written to disk.
         :param int bytes_remaining:
             How many bytes have been downloaded.
@@ -45,8 +45,10 @@ class Monostate:
         on_complete: Optional[OnComplete],
         title: Optional[str] = None,
         duration: Optional[int] = None,
+        catagory: Optional[str] = None,
     ):
         self.on_progress = on_progress
         self.on_complete = on_complete
         self.title = title
         self.duration = duration
+        self.catagory = catagory
