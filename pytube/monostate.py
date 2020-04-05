@@ -45,10 +45,8 @@ class Monostate:
         on_complete: Optional[OnComplete],
         title: Optional[str] = None,
         duration: Optional[int] = None,
-        catagory: Optional[str] = None,
     ):
         self.on_progress = on_progress
         self.on_complete = on_complete
         self.title = title
         self.duration = duration
-        self.catagory = catagory
